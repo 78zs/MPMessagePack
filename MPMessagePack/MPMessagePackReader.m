@@ -175,6 +175,9 @@
   
   for (NSInteger i = 0; i < length; i++) {
     id key = [self readFromContext:context error:error];
+      if ([key isKindOfClass:[NSData class]]) {
+          key = [[NSString alloc] initWithData:key encoding:NSUTF8StringEncoding];
+      }
     if (!key) return nil;
     id value = [self readFromContext:context error:error];
     if (!value) return nil;
