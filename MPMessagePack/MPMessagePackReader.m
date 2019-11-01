@@ -227,6 +227,9 @@ static size_t mp_writer(cmp_ctx_t *ctx, const void *data, size_t count) {
 }
 
 + (id)readData:(NSData *)data options:(MPMessagePackReaderOptions)options error:(NSError **)error {
+    if (data.length == 0) {
+        return [NSNull null];
+    }
   MPMessagePackReader *messagePackReader = [[MPMessagePackReader alloc] initWithData:data options:options];
   id obj = [messagePackReader readObject:error];
   
